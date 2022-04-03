@@ -74,7 +74,7 @@ export default {
           });
         aTest = test();
         marker.setLngLat(aTest);
-      }, 30000);
+      }, 1000);
     });
     onUnmounted(() => {
       map.value?.remove();
