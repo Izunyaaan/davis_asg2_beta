@@ -4,7 +4,7 @@ import HomeView from '../views/HomeView.vue'
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Normal Map. Updates every 30 seconds',
     component: HomeView
   },
   // {
