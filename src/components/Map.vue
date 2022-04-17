@@ -18,11 +18,7 @@ export default {
     const mapContainer = shallowRef(null);
     const map = shallowRef(null);
     onMounted(() => {
-      const test = () => {
-        return [Math.random() / 10 + 103.8, Math.random() / 10 + 1.3];
-      };
-      let aTest = test();
-      const apiKey = "Ls2nQjVJK9TVInhXJ7Oj";
+      const apiKey = process.env.VUE_APP_API_KEY;
       if (apiKey == null) {
         throw new Error(
           "You need to configure env VUE_APP_API_KEY first, see README"
@@ -42,7 +38,7 @@ export default {
         })
       );
       map.value.addControl(new NavigationControl(), "top-right");
-      const marker = new Marker({ color: "#0000FF" })
+      const marker = new Marker({ color: "#FF0000" })
         .setLngLat(aTest)
         .setPopup(new Popup().setHTML("<h1>Fake Taxi #1</h1>"))
         .addTo(map.value);
@@ -50,15 +46,69 @@ export default {
         .setLngLat([initialState.lng, initialState.lat])
         .setPopup(new Popup().setHTML("<h1>Real Taxi #1</h1>"))
         .addTo(map.value);
+      const marker3 = new Marker({ color: "#0000FF" })
+        .setLngLat([initialState.lng, initialState.lat])
+        .setPopup(new Popup().setHTML("<h1>Real Taxi #2</h1>"))
+        .addTo(map.value);
+      const marker4 = new Marker({ color: "#0000FF" })
+        .setLngLat([initialState.lng, initialState.lat])
+        .setPopup(new Popup().setHTML("<h1>Real Taxi #3</h1>"))
+        .addTo(map.value);
+      const marker5 = new Marker({ color: "#0000FF" })
+        .setLngLat([initialState.lng, initialState.lat])
+        .setPopup(new Popup().setHTML("<h1>Real Taxi #4</h1>"))
+        .addTo(map.value);
+      const marker9 = new Marker({ color: "#0000FF" })
+        .setLngLat([initialState.lng, initialState.lat])
+        .setPopup(new Popup().setHTML("<h1>Real Taxi #4</h1>"))
+        .addTo(map.value);
+      const marker6 = new Marker({ color: "#0000FF" })
+        .setLngLat([initialState.lng, initialState.lat])
+        .setPopup(new Popup().setHTML("<h1>Real Taxi #4</h1>"))
+        .addTo(map.value);
+      const marker7 = new Marker({ color: "#0000FF" })
+        .setLngLat([initialState.lng, initialState.lat])
+        .setPopup(new Popup().setHTML("<h1>Real Taxi #4</h1>"))
+        .addTo(map.value);
+      const marker8 = new Marker({ color: "#0000FF" })
+        .setLngLat([initialState.lng, initialState.lat])
+        .setPopup(new Popup().setHTML("<h1>Real Taxi #4</h1>"))
+        .addTo(map.value);
 
       fetch("https://api.data.gov.sg/v1//transport/taxi-availability")
         .then((res) => res.json())
         .then((data) => {
-          console.log("===========");
-          console.log(data.features[0].geometry.coordinates[0]);
           marker2.setLngLat([
             data.features[0].geometry.coordinates[0][0],
             data.features[0].geometry.coordinates[0][1],
+          ]);
+          marker3.setLngLat([
+            data.features[0].geometry.coordinates[1][0],
+            data.features[0].geometry.coordinates[1][1],
+          ]);
+          marker4.setLngLat([
+            data.features[0].geometry.coordinates[2][0],
+            data.features[0].geometry.coordinates[2][1],
+          ]);
+          marker5.setLngLat([
+            data.features[0].geometry.coordinates[1200][0],
+            data.features[0].geometry.coordinates[1200][1],
+          ]);
+          marker6.setLngLat([
+            data.features[0].geometry.coordinates[1201][0],
+            data.features[0].geometry.coordinates[1201][1],
+          ]);
+          marker7.setLngLat([
+            data.features[0].geometry.coordinates[200][0],
+            data.features[0].geometry.coordinates[200][1],
+          ]);
+          marker8.setLngLat([
+            data.features[0].geometry.coordinates[500][0],
+            data.features[0].geometry.coordinates[500][1],
+          ]);
+          marker9.setLngLat([
+            data.features[0].geometry.coordinates[900][0],
+            data.features[0].geometry.coordinates[900][1],
           ]);
         });
       setInterval(() => {
@@ -71,10 +121,38 @@ export default {
               data.features[0].geometry.coordinates[0][0],
               data.features[0].geometry.coordinates[0][1],
             ]);
+            marker3.setLngLat([
+              data.features[0].geometry.coordinates[1][0],
+              data.features[0].geometry.coordinates[1][1],
+            ]);
+            marker4.setLngLat([
+              data.features[0].geometry.coordinates[2][0],
+              data.features[0].geometry.coordinates[2][1],
+            ]);
+            marker5.setLngLat([
+              data.features[0].geometry.coordinates[1200][0],
+              data.features[0].geometry.coordinates[1200][1],
+            ]);
+            marker6.setLngLat([
+              data.features[0].geometry.coordinates[1201][0],
+              data.features[0].geometry.coordinates[1201][1],
+            ]);
+            marker7.setLngLat([
+              data.features[0].geometry.coordinates[200][0],
+              data.features[0].geometry.coordinates[200][1],
+            ]);
+            marker8.setLngLat([
+              data.features[0].geometry.coordinates[500][0],
+              data.features[0].geometry.coordinates[500][1],
+            ]);
+            marker9.setLngLat([
+              data.features[0].geometry.coordinates[900][0],
+              data.features[0].geometry.coordinates[900][1],
+            ]);
           });
         aTest = test();
         marker.setLngLat(aTest);
-      }, 1000);
+      }, 30000);
     });
     onUnmounted(() => {
       map.value?.remove();
