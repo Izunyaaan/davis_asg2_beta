@@ -2,6 +2,15 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
       <!--  -->
+      <v-list>
+        <v-list-item
+          v-for="(link, index) in links"
+          :key="index"
+          :to="link.link"
+        >
+          {{ link.name }}
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
 
     <v-app-bar app>
@@ -19,6 +28,12 @@
 
 <script>
 export default {
-  data: () => ({ drawer: false }),
+  data: () => ({
+    drawer: false,
+    links: [
+      { icon: "", name: "Default Map", link: "/" },
+      { icon: "", name: "Speed Tracker", link: "/speed" },
+    ],
+  }),
 };
 </script>

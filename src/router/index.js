@@ -7,14 +7,14 @@ const routes = [
     name: 'Normal Map. Updates every 30 seconds',
     component: HomeView
   },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  // }
+  {
+    path: '/speed',
+    name: 'Speed Tracking. Updates every 30 seconds',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/SpeedTrackingView.vue')
+  }
 ]
 
 const router = createRouter({
