@@ -39,7 +39,7 @@ export default {
           currentTaxiCoordinates.forEach((coords, index) => {
             //create marker if it doesn't exist yet.
             if (!markersArr[index]) {
-              markersArr[index] = new Marker({ color: "#FF0000" })
+              markersArr[index] = new Marker({ color: "#00FF00" })
                 .setPopup(new Popup().setText(`Taxi #${index}`))
                 .setLngLat(coords)
                 .addTo(map.value);
