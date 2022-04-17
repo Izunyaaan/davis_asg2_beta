@@ -7,7 +7,7 @@
     /></a>
     <div class="map" ref="mapContainer"></div>
     <div id="ainunaBox" v-show="showAinunaBox" ref="geoLocateControls">
-      <v-btn block outlined color="#FCE4EC" @click="clearMarkers">
+      <v-btn block outlined color="#FCE4EC" @click="clearMarkers" class="mb-2">
         taxi pick up area
       </v-btn>
       <v-btn block outlined color="red" @click="centerOnUser">
