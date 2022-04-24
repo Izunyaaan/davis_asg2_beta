@@ -528,6 +528,7 @@ export default {
       });
   },
   unmounted() {
+    //dispose stuff. Doesn't seem to clean itself
     clearInterval(this.timer);
     this.map.remove();
   },
