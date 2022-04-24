@@ -24,6 +24,32 @@ export default {
   name: "MapW",
   data: () => ({
     showAinunaBox: false,
+    dummyTaxiStops: [
+      new Marker({ color: "blue" })
+        .setLngLat([103.8361, 1.2786])
+        .setPopup(new Popup().setText("Taxi Stop #1")),
+      new Marker({ color: "blue" })
+        .setLngLat([103.831909, 1.305083])
+        .setPopup(new Popup().setText("Taxi Stop #2")),
+      new Marker({ color: "blue" })
+        .setLngLat([103.846092, 1.290017])
+        .setPopup(new Popup().setText("Taxi Stop #3")),
+      new Marker({ color: "blue" })
+        .setLngLat([103.8162, 1.3151])
+        .setPopup(new Popup().setText("Taxi Stop #4")),
+      new Marker({ color: "blue" })
+        .setLngLat([103.787888, 1.40226])
+        .setPopup(new Popup().setText("Taxi Stop #5")),
+      new Marker({ color: "blue" })
+        .setLngLat([103.844383, 1.281547])
+        .setPopup(new Popup().setText("Taxi Stop #6")),
+      new Marker({ color: "blue" })
+        .setLngLat([103.8631, 1.2893])
+        .setPopup(new Popup().setText("Taxi Stop #7")),
+      new Marker({ color: "blue" })
+        .setLngLat([103.861, 1.2847])
+        .setPopup(new Popup().setText("Taxi Stop #8")),
+    ],
   }),
   setup() {
     const mapContainer = shallowRef(null);
@@ -45,6 +71,8 @@ export default {
                 .addTo(map.value);
             }
             //updates existing marker's coordinates
+            markersArr[index].remove();
+            markersArr[index].addTo(map.value);
             markersArr[index].setLngLat(coords);
           });
         });
@@ -94,17 +122,30 @@ export default {
   methods: {
     clearMarkers() {
       if (!this.markersArr) return;
-      clearInterval(this.refreshInterval);
+      //clearInterval(this.refreshInterval);
       this.markersArr.forEach((marker) => {
         marker.remove();
+      });
+      //Center and zoom map onto Singapore
+      const initialState = {
+        lng: 103.8023514142483,
+        lat: 1.3695991684760638,
+        zoom: 10,
+      };
+      this.map.flyTo({
+        center: [initialState.lng, initialState.lat],
+        zoom: initialState.zoom,
+      });
+      this.dummyTaxiStops.forEach((marker) => {
+        marker.addTo(this.map);
       });
     },
     centerOnUser() {
       const userMarker = new Marker({ color: "#0000FF" });
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log(position.coords.latitude);
-          console.log(position.coords.longitude);
+          // console.log(position.coords.latitude);
+          // console.log(position.coords.longitude);
           userMarker
             .setLngLat([position.coords.longitude, position.coords.latitude])
             .setPopup(new Popup().setText("You Are Here"))
@@ -113,8 +154,8 @@ export default {
 
           this.map.flyTo({
             center: [position.coords.longitude, position.coords.latitude],
+            zoom: 15,
           });
-          this.map.setMinZoom(15);
           // Add Circle Outline
 
           const circleToPolygon = require("circle-to-polygon");
@@ -147,7 +188,7 @@ export default {
           });
         },
         (error) => {
-          console.log(error.message);
+          console.error(error.message);
         }
       );
     },
