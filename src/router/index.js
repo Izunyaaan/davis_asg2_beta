@@ -9,11 +9,19 @@ const routes = [
   },
   {
     path: '/speed',
-    name: 'Speed Tracking. Updates every 30 seconds',
+    name: 'Speed Tracking. Updates every 30 seconds.',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import('../views/SpeedTrackingView.vue')
+  },
+  {
+    path: '/heatmap',
+    name: 'Heatmap of the last 5 minutes',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/HeatMap.vue')
   }
 ]
 
