@@ -29,7 +29,7 @@
 <script>
 export default {
   data: () => ({
-    drawer: false,
+    drawer: true,
     links: [
       { icon: "", name: "Default Map", link: "/" },
       { icon: "", name: "Speed Tracker", link: "/speed" },
