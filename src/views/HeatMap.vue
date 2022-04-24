@@ -165,7 +165,7 @@ export default {
       const dateObj = new Date(Date.now() - i * 30000);
       promises.unshift(fetch(createQueryURL(dateObj)));
     }
-    console.log(promises);
+    //console.log(promises);
 
     Promise.all(promises)
       .then((responses) => Promise.all(responses.map((r) => r.json())))
