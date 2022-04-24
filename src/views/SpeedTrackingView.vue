@@ -44,7 +44,7 @@ export default {
       });
 
       const oldTime = `${year}-${month}-${day}T${hour}:${min}:${sec}`;
-      console.log(oldTime);
+      // console.log(oldTime);
 
       const currentPositions = fetch(
         "https://api.data.gov.sg/v1//transport/taxi-availability"
@@ -59,7 +59,7 @@ export default {
         .then((dataArr) => {
           const oldCoords = dataArr[0].features[0].geometry.coordinates;
           const currentCoords = dataArr[1].features[0].geometry.coordinates;
-          console.log(oldCoords, currentCoords);
+          // console.log(oldCoords, currentCoords);
 
           const canGetSpeed = oldCoords.length === currentCoords.length;
 
@@ -73,7 +73,7 @@ export default {
           const markers = this.markers;
 
           if (canGetSpeed) {
-            console.log("calculate speeds");
+            // console.log("calculate speeds");
             let start = { latitude: 0, longitude: 0 };
             let end = { latitude: 0, longitude: 0 };
             currentCoords.forEach((coord, index) => {
@@ -101,7 +101,7 @@ export default {
                 .addTo(this.map);
             });
           }
-          console.log("Done calculating");
+          // console.log("Done calculating");
         });
     },
   },
