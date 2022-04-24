@@ -33,6 +33,7 @@ export default {
     links: [
       { icon: "", name: "Default Map", link: "/" },
       { icon: "", name: "Speed Tracker", link: "/speed" },
+      { icon: "", name: "Heatmap", link: "/heatmap" },
     ],
   }),
 };
