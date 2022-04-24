@@ -82,8 +82,7 @@ export default {
               end.latitude = coord[1];
               end.longitude = coord[0];
 
-              const speed =
-                haversine(start, end, { unit: "meter" }) / 1000 / (30 / 3600);
+              const speed = haversine(start, end, { unit: "meter" }) * 0.12; // speed = distance (meters)/30 (seconds) * 3.6 (convert m/s to km/h)
               const markerColour = speed < 80 ? "green" : "red";
 
               markers[index] = new Marker({ color: markerColour })
