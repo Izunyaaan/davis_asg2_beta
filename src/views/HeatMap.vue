@@ -183,7 +183,11 @@ export default {
         map.on("load", () => {
           //add all sources and layers
           sourceData.forEach((source, index) => {
-            const heatData = source[0];
+            const dateObj = new Date(
+              Date.now() + 60 * 60 * 1000 * 8 - index * 30000
+            );
+            const url = createQueryURL(dateObj);
+            //const heatData = source[0];
             const min = source[1];
             const max = source[2];
 
@@ -191,7 +195,7 @@ export default {
             // Heatmap layers also work with a vector tile source.
             map.addSource("taxis" + index, {
               type: "geojson",
-              data: heatData,
+              data: url,
             });
 
             map.addLayer(
@@ -199,7 +203,7 @@ export default {
                 id: "taxiheat" + index,
                 type: "heatmap",
                 source: "taxis" + index,
-                maxzoom: 9,
+                maxzoom: 16,
                 paint: {
                   // Increase the heatmap weight based on frequency and property magnitude
                   "heatmap-weight": [
@@ -249,8 +253,8 @@ export default {
                     ["zoom"],
                     0,
                     2,
-                    9,
-                    20,
+                    19,
+                    8,
                   ],
                   // Transition from heatmap to circle layer by zoom level
                   "heatmap-opacity": [
@@ -259,7 +263,7 @@ export default {
                     ["zoom"],
                     7,
                     1,
-                    9,
+                    19,
                     0,
                   ],
                 },
@@ -271,7 +275,7 @@ export default {
                 id: "taxis-point" + index,
                 type: "circle",
                 source: "taxis" + index,
-                minzoom: 7,
+                minzoom: 17,
                 paint: {
                   // Size circle radius by earthquake magnitude and zoom level
                   "circle-radius": [
