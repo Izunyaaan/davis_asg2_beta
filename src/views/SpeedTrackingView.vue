@@ -20,8 +20,8 @@ export default {
   methods: {
     getSpeeds() {
       const haversine = require("haversine");
-      const d = new Date(Date.now() - 30000);
-      const hour = d.getHours().toLocaleString("en-US", {
+      const d = new Date(Date.now() - 30000 + 8 * 60 * 60 * 1000);
+      const hour = d.getUTCHours().toLocaleString("en-US", {
         minimumIntegerDigits: 2,
         useGrouping: false,
       });

@@ -59,7 +59,7 @@ export default {
 
     //get times of every 30seconds for the past 5 minutes
     const createQueryURL = (dateObj) => {
-      const hour = dateObj.getHours().toLocaleString("en-US", {
+      const hour = dateObj.getUTCHours().toLocaleString("en-US", {
         minimumIntegerDigits: 2,
         useGrouping: false,
       });
@@ -162,7 +162,7 @@ export default {
     */
     let promises = [];
     for (let i = 0; i < 11; i++) {
-      const dateObj = new Date(Date.now() - i * 30000);
+      const dateObj = new Date(Date.now() + 60 * 60 * 1000 * 8 - i * 30000); //Offset from UTC by +8 to fit the API requirements
       promises.unshift(fetch(createQueryURL(dateObj)));
     }
     //console.log(promises);
