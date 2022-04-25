@@ -59,7 +59,7 @@ export default {
 
     //get times of every 30seconds for the past 5 minutes
     const createQueryURL = (dateObj) => {
-      const hour = (dateObj.getUTCHours() + 8).toLocaleString("en-US", {
+      const hour = dateObj.getHours().toLocaleString("en-US", {
         minimumIntegerDigits: 2,
         useGrouping: false,
       });
