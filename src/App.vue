@@ -35,6 +35,7 @@ export default {
       { icon: "", name: "Speed Tracker", link: "/speed" },
       { icon: "", name: "Mini Game", link: "/game" },
       { icon: "", name: "Heatmap", link: "/heatmap" },
+      { icon: "", name: "Bubble Plot", link: "/bubble" },
     ],
   }),
 };
